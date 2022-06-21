@@ -1,0 +1,668 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    width: 100%;
+    background-image: url(../imagenes/fondo5.webp);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+header {
+    width: 100%;
+    height: 10vh;
+}
+
+
+h1 {
+    color: black;
+}
+
+
+@media(max-width:300px) {
+    #titulo {
+        font-size: 20px;
+    }
+}
+
+
+
+@media(max-width:400px) {
+    #card {
+        width: 280px;
+    }
+
+    #frente {
+        width: 280px;
+    }
+
+    #atras {
+        width: 280px;
+    }
+}
+
+#accordion {
+    border-radius: 30px;
+}
+
+.accordion-body {
+    background-color: rgba(128, 128, 128, 0.068);
+}
+
+#logo {
+    height: 80px;
+    width: 80px;
+}
+
+#divtransacciones {
+    background:rgba(33, 20, 143, 0.9);
+    min-height: 100px;
+    max-width: 800px;
+    margin:  auto;
+    padding: 10px 30px
+}
+table{
+    border: 2px solid blue;
+}
+#transaccion{
+    color: white;
+  }
+  #th{
+      color: white;
+  }
+
+#menu {
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+     background-color: #070124 !important;
+}
+@media(min-width:768px) and (max-width: 991px) {
+    #divtransacciones {
+        padding: 0;
+        margin: auto;
+    }
+}
+@media(min-width: 300px) and (max-width: 767px) {
+    #divtransacciones {
+        padding: 0;
+        margin: auto;
+    }
+    
+}
+
+@media(max-width: 400px) {
+    #divtransacciones {
+        padding: 0;
+        margin: auto;
+        max-width: 250px;
+    }
+    th,tr{
+        font-size: 15px;
+    }
+} 
+
+
+
+/* -------------------------------------------cuentas inicio------------------------------------------------ */
+
+.cardcuentas {
+    max-width: 350px;
+    color: white;
+    border-radius: 20px;
+    background:rgba(33, 20, 143, 0.9);
+    padding: 20px;
+   box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+hr.new1 {
+  border-top: 2px dashed #fff;
+}
+
+#saldo{
+    color: #24CBC7;
+}
+#cuenta{
+    font-size: 18px;
+}
+#fecha{
+    font-size: 18px;
+}
+  .cardcuentas:hover {
+    transform: scale(0.9);
+  }
+
+
+
+
+  #botontransacciones {
+    position: relative;
+    font-size: 14px;
+    height: 3em;
+    border: none;
+    background-color: #1b9dc4;
+    color: #fff;
+    text-transform: uppercase;
+    overflow: hidden;
+    border-radius: 5px;
+    align-items: center;
+   }
+   
+   #botontransacciones::before {
+    content: '';
+    display: block;
+    position: absolute;
+    z-index: 0;
+    bottom: 0;
+    left: 0;
+    height: 0px;
+    width: 100%;
+    background: rgb(47, 143, 221);
+    background: linear-gradient(90deg, rgb(27, 106, 196) 20%, rgb(7, 62, 124) 100%);
+    transition: 0.2s;
+   }
+   
+   #botontransacciones .label {
+    position: relative;
+   }
+
+   
+   #botontransacciones .icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 3em;
+    width: 3em;
+    position: absolute;
+    top: 3em;
+    right: 0;
+    opacity: 0;
+    transition: 0.4s;
+   }
+   
+   #botontransacciones:hover::before {
+    height: 100%;
+   }
+   
+   #botontransacciones:hover .icon {
+    top: 0;
+    opacity: 1;
+   }
+
+  /* -------------------------------------------cuentas final------------------------------------------------ */
+
+
+
+
+
+
+
+/* -------------------------------------------tarjetas inicio------------------------------------------------ */
+.title {
+    margin-bottom: 30px;
+    color: #162969;
+}
+
+
+.card {
+    width: 320px;
+    height: 190px;
+    -webkit-perspective: 600px;
+    -moz-perspective: 600px;
+    perspective: 600px;
+    background-color: rgba(255, 255, 255, 0) !important;
+}
+
+.card__partgold {
+    box-shadow: 1px 1px #aaa3a3;
+    top: 0;
+    position: absolute;
+    z-index: 1000;
+    left: 0;
+    display: inline-block;
+    width: 320px;
+    height: 190px;
+    background-image: url(../imagenes/continentes.png), linear-gradient(to right bottom, #ffbf00, #ffcf00, #ffd700, #ffcf00, #ffbf00);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    border-radius: 8px;
+
+    -webkit-transition: all .5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    -moz-transition: all .5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    -ms-transition: all .5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    -o-transition: all .5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: all .5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+.card__partsilver {
+    box-shadow: 1px 1px #aaa3a3;
+    top: 0;
+    position: absolute;
+    z-index: 1000;
+    left: 0;
+    display: inline-block;
+    width: 320px;
+    height: 190px;
+    background-image: url(../imagenes/continentes.png), linear-gradient(to right bottom, #595a56, #8d8d83, #50504e, #515250, #797975);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    border-radius: 8px;
+
+    -webkit-transition: all .5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    -moz-transition: all .5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    -ms-transition: all .5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    -o-transition: all .5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: all .5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+.card__parttitanium {
+    box-shadow: 1px 1px #aaa3a3;
+    top: 0;
+    position: absolute;
+    z-index: 1000;
+    left: 0;
+    display: inline-block;
+    width: 320px;
+    height: 190px;
+    background-image: url(../imagenes/continentes.png), linear-gradient(to right bottom, #19181a, #2b2b27, #4c4d3f, #11130b, #272726);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    border-radius: 8px;
+
+    -webkit-transition: all .5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    -moz-transition: all .5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    -ms-transition: all .5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    -o-transition: all .5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: all .5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+.card__partblue {
+    box-shadow: 1px 1px #aaa3a3;
+    top: 0;
+    position: absolute;
+    z-index: 1000;
+    left: 0;
+    display: inline-block;
+    width: 320px;
+    height: 190px;
+    background-image: url(../imagenes/continentes.png), linear-gradient(to right bottom, #1b057e, #252b83, #2d2366, #0f0350, #2b0681);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    border-radius: 8px;
+
+    -webkit-transition: all .5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    -moz-transition: all .5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    -ms-transition: all .5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    -o-transition: all .5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: all .5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+
+.card__front {
+    padding: 18px;
+    transform: rotateY(0);
+    transform: rotateY(0);
+}
+
+.card__back {
+    padding: 18px 0;
+    transform: rotateY(-180deg);
+    transform: rotateY(-180deg);
+}
+
+.card__black-line {
+    margin-top: 5px;
+    height: 38px;
+    background-color: #303030;
+}
+
+.card__logo {
+    height: 16px;
+}
+
+.card__front-logo {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+}
+
+.card__square {
+    border-radius: 5px;
+    height: 30px;
+}
+
+.card_numer {
+    display: block;
+    width: 100%;
+    word-spacing: 4px;
+    font-size: 20px;
+    letter-spacing: 2px;
+    color: #fff;
+    text-align: center;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.card__space-75 {
+    width: 75%;
+    float: left;
+}
+
+.card__space-25 {
+    width: 25%;
+    float: left;
+}
+
+.card__label {
+    font-size: 10px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.8);
+    letter-spacing: 1px;
+}
+
+.card__info {
+    margin-bottom: 0;
+    margin-top: 5px;
+    font-size: 16px;
+    line-height: 18px;
+    color: #fff;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.card__back-content {
+    padding: 15px 15px 0;
+}
+
+.card__secret--last {
+    color: #303030;
+    text-align: right;
+    margin: 0;
+    font-size: 14px;
+}
+
+.card__secret {
+    padding: 5px 12px;
+    background-color: #fff;
+    position: relative;
+}
+
+.card__secret:before {
+    content: '';
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    height: calc(100% + 6px);
+    width: calc(100% - 42px);
+    border-radius: 4px;
+    background: repeating-linear-gradient(45deg, #ededed, #ededed 5px, #f9f9f9 5px, #f9f9f9 10px);
+}
+
+.card__back-logo {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+}
+
+.card__back-square {
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+}
+
+.card:hover .card__front {
+    transform: rotateY(180deg);
+    transform: rotateY(180deg);
+
+}
+
+.card:hover .card__back {
+    transform: rotateY(0deg);
+    transform: rotateY(0deg);
+}
+
+#visadebito {
+    width: 50px;
+    height: 35px;
+    background: white;
+}
+
+/* -------------------------------------------tarjetas final------------------------------------------------ */
+
+
+
+/*-------------------- loader--------------------------- */
+
+#contenedor {
+    background: rgba(250, 240, 245, 0.9);
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    transition: 1s ease;
+    z-index: 10000;
+}
+
+#carga {
+    border: 15px solid #ccc;
+    border-top-color: #2a26f4;
+    border-top-style: groove;
+    height: 100px;
+    width: 100px;
+    border-radius: 100%;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    animation: girar 1.5s infinite;
+
+}
+
+@keyframes girar {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/*-------------------- loader--------------------------- */
+
+
+/*-------------------- crear tarjetas--------------------------- */
+
+#login .container #login-row #login-column #login-box {
+    max-width: 600px;
+    height: 350px;
+    border: 1px solid #9C9C9C;
+    background:rgba(33, 20, 143, 0.9);
+  }
+  #login .container #login-row #login-column #login-box #login-form {
+    padding: 20px;
+  }
+  #login-box{
+      border-radius: 30px;
+      box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset,
+       rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
+  }
+  select{
+    border-radius: 10px;
+    height: 60px;
+  }
+#contenedorform{
+
+    min-height: 100vh;
+}
+#beneficios{
+     max-width: 600px;
+     height: 300px;
+     border: 1px solid #9C9C9C;
+     background-color: #EAEAEA;
+padding: 12px 24px;
+border-radius: 10px;
+box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+}
+li{
+    list-style: none;
+}
+
+/*-------------------- crear tarjetas--------------------------- */
+
+
+
+/*--------------------------------------------- Transferencias inicio--------------------------------------------- */
+
+.cardtransfer {
+    max-width: 500px;
+    margin: auto;
+    color: white;
+    border-radius: 20px;
+    background:rgba(33, 20, 143, 0.9);
+}
+
+
+
+.container .h8 {
+    font-size: 30px;
+    font-weight: 800;
+    text-align: center;
+}
+
+
+.form-control {
+    color: white;
+    background-color: #223C60;
+    border: 2px solid transparent;
+    height: 60px;
+    padding-left: 20px;
+    vertical-align: middle;
+}
+
+
+.text {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+::placeholder {
+    font-size: 14px;
+    font-weight: 600;
+}
+/*--------------------------------------------- Transferencias fin--------------------------------------------- */
+
+
+
+
+
+
+#botontarjeta{
+    margin-left: -25px;
+}
+
+
+/*--------------------------------------------- boton crear cuenta,prestamos,tarjeta--------------------------------------------- */
+#boton {
+    background: linear-gradient(-45deg, #3f00b5, #9f69fe, #27c8b7, #3f00b5);
+    background-size: 800% 400%;
+    padding: 12px 24px;
+    display: inline-block;
+    border: none;
+    border-radius: 10px;
+    font-size: 17px;
+    font-weight: 700;
+    color: white;
+    transition: all .5s ease-in-out;
+    animation: gradient 10s infinite cubic-bezier(.62, .28, .23, .99) both;
+    text-decoration: none;
+   }
+   
+   #boton:hover {
+    animation: gradient 3s infinite;
+    transform: scale(1.05);
+   }
+   
+   #boton:active {
+    animation: gradient 3s infinite;
+    transform: scale(0.8);
+   }
+   
+   @keyframes gradient {
+    0% {
+     background-position: 0% 50%;
+    }
+   
+    50% {
+     background-position: 100% 50%;
+    }
+   
+    100% {
+     background-position: 0% 50%;
+    }
+   }
+/*--------------------------------------------- fin boton crear cuenta,prestamos,tarjeta--------------------------------------------- */
+
+
+/*--------------------------------------------- inicio Descargar--------------------------------------------- */
+.fecha{
+    background-color: #254ac2;
+    border-radius: 5px;
+    width: 200px;
+    color: white;
+}
+
+
+.cssbuttons-io-button {
+    display: flex;
+    align-items: center;
+    font-family: inherit;
+    font-weight: 500;
+    font-size: 17px;
+    padding: 0.8em 1.5em 0.8em 1.2em;
+    color: white;
+    background: #ad5389;
+    background: linear-gradient(0deg, rgba(77,54,208,1) 0%, rgba(132,116,254,1) 100%);
+    border: none;
+    box-shadow: 0 0.7em 1.5em -0.5em #4d36d0be;
+    letter-spacing: 0.05em;
+    border-radius: 20em;
+   }
+   
+   .cssbuttons-io-button svg {
+    margin-right: 8px;
+   }
+   
+   .cssbuttons-io-button:hover {
+    box-shadow: 0 0.5em 1.5em -0.5em #4d36d0be;
+   }
+   
+   .cssbuttons-io-button:active {
+    box-shadow: 0 0.3em 1em -0.5em #4d36d0be;
+   }
+/*--------------------------------------------- fin Descargar--------------------------------------------- */

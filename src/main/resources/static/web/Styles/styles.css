@@ -1,0 +1,92 @@
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+
+body{
+    min-height: 100vh;
+   width: 100%; 
+   background-color: rgb(214, 176, 129);
+}
+
+#form1{
+    background-color: #24303c;
+    color: white;
+    border-radius: 4px;
+    padding: 10px;
+    margin-top: 20px;
+}
+
+table{
+    background-color: #24303c;
+    border-radius: 4px;
+}
+
+th,td,pre{
+    color: white;
+}
+
+
+.btn-close{
+    background-color: white!important;
+}
+
+.modal-content{
+    background-color: black;
+}
+
+
+
+@media(max-width:400px){
+    #contenedor{
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+
+
+
+
+
+
+.cardtransfer {
+    max-width: 500px;
+    margin: auto;
+    color: white;
+    border-radius: 20px;
+    background-color: #24303c;
+}
+
+
+
+.container .h8 {
+    font-size: 30px;
+    font-weight: 800;
+    text-align: center;
+}
+
+
+
+#boton{
+    border-radius: 35px;
+    padding: 10px 12px;
+    border: 2px solid #f44242;
+    color: white;
+    width: 50%;
+  }
+
+
+.text {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+::placeholder {
+    font-size: 14px;
+    font-weight: 600;
+}
