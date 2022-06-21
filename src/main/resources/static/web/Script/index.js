@@ -23,7 +23,7 @@ Vue.createApp({
             axios.post('/api/login',`email=${mail}&password=${pass}`,
             {headers:
                 {'content-type':'application/x-www-form-urlencoded'}})
-                .then(response => mail == "admin@admin.com" ? window.location.href="http://localhost:8080/web/manager.html" : window.location.href="http://localhost:8080/web/accounts.html")
+                .then(response => mail == "admin@admin.com" ? window.location.href="https://homebakingmindhub.herokuapp.com/web/manager.html" : window.location.href="https://homebakingmindhub.herokuapp.com/web/accounts.html")
                 .catch( error => {
                  if(error.response.status == 401){
                    this.error1 = true
