@@ -79,7 +79,7 @@ Vue.createApp({
 
 
       cerrarsesion(){
-        axios.post('https://homebakingmindhub.herokuapp.com/api/logout').then(response => window.location.href="https://homebakingmindhub.herokuapp.com/index.html")
+        axios.post('https://homebakingmindhub.herokuapp.com/api/logout').then(response => window.location.href="https://homebakingmindhub.herokuapp.com/web/index.html")
       }
     }
   }).mount('#app')
