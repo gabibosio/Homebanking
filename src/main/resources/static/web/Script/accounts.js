@@ -19,7 +19,7 @@ const app =Vue.createApp({
     },
 
     created() {
-        axios.get("http://localhost:8080/api/clients/current")
+        axios.get("https://homebakingmindhub.herokuapp.com/api/clients/current")
   .then(datos => {
       this.cuentas = datos.data.accounts
       this.cliente = datos.data
@@ -47,7 +47,7 @@ const app =Vue.createApp({
 
     methods:{
       cerrarsesion(){
-        axios.post('/api/logout').then(response => window.location.href="http://localhost:8080/web/index.html")
+        axios.post('https://homebakingmindhub.herokuapp.com/api/logout').then(response => window.location.href="https://homebakingmindhub.herokuapp.com/web/index.html")
       },
 
       crearCuentas(){
@@ -81,7 +81,7 @@ const app =Vue.createApp({
         })
         .then(result => {
           if (result.isConfirmed) {
-          axios.post(`http://localhost:8080/api/clients/current/accounts`,`accountType=${this.tipodecuenta}`)
+          axios.post(`https://homebakingmindhub.herokuapp.com/api/clients/current/accounts`,`accountType=${this.tipodecuenta}`)
           .then(response=>{
             Swal.fire(
               'Cuenta Creada',
@@ -111,7 +111,7 @@ const app =Vue.createApp({
           confirmButtonText: 'Si, Eliminar Cuenta'
         }).then((result) => {
           if (result.isConfirmed) {
-              axios.patch(`/api/accounts/visibility/${id}`)
+              axios.patch(`https://homebakingmindhub.herokuapp.com/api/accounts/visibility/${id}`)
               .then(result => {
                 Swal.fire(
                   'Cuenta Eliminada',
