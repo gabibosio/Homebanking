@@ -23,7 +23,7 @@ Vue.createApp({
     created() {
         const urlParams = new URLSearchParams(window.location.search);
         const id = urlParams.get('id');
-        axios.get(`http://localhost:8080/api/accounts/${id}`)
+        axios.get(`https://homebakingmindhub.herokuapp.com/api/accounts/${id}`)
         .then(datos => {
           this.cuenta = datos.data.number
           this.idCuenta = datos.data
@@ -46,7 +46,7 @@ Vue.createApp({
     console.log(error);
   })
 
-  axios.get("http://localhost:8080/api/clients/current")
+  axios.get("https://homebakingmindhub.herokuapp.com/api/clients/current")
   .then(datos => {
       this.cliente = datos.data
   })
@@ -69,7 +69,7 @@ Vue.createApp({
         }).then((result) => {
           if (result.isConfirmed) {
             Swal.fire('Guardado!', '', 'success')
-            axios.post(`http://localhost:8080/api/pdf/${id}`,`desde=${this.desde}&hasta=${this.hasta}`)
+            axios.post(`https://homebakingmindhub.herokuapp.com/api/pdf/${id}`,`desde=${this.desde}&hasta=${this.hasta}`)
           } else if (result.isDenied) {
             Swal.fire('no se guardo', '', 'info')
           }
@@ -79,7 +79,7 @@ Vue.createApp({
 
 
       cerrarsesion(){
-        axios.post('/api/logout').then(response => window.location.href="http://localhost:8080/web/index.html")
+        axios.post('https://homebakingmindhub.herokuapp.com/api/logout').then(response => window.location.href="https://homebakingmindhub.herokuapp.com/index.html")
       }
     }
   }).mount('#app')

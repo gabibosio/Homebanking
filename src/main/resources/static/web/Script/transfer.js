@@ -20,7 +20,7 @@ Vue.createApp({
     },
 
     created(){
-      axios.get("http://localhost:8080/api/clients/current").then(response =>{
+      axios.get("https://homebakingmindhub.herokuapp.com/api/clients/current").then(response =>{
         this.cliente = response.data
         this.cuenta = response.data.accounts
       })
@@ -40,7 +40,7 @@ Vue.createApp({
               confirmButtonText: 'Si, Transferir'
             }).then((result) => {
               if (result.isConfirmed) {              
-                  axios.post('/api/transactions',`description=${this.descripcion}&accountOrigin=${this.cuentaOrigen}&accountDestiny=${this.cuentaDestino}&amount=${this.monto}`,
+                  axios.post('https://homebakingmindhub.herokuapp.com/api/transactions',`description=${this.descripcion}&accountOrigin=${this.cuentaOrigen}&accountDestiny=${this.cuentaDestino}&amount=${this.monto}`,
                   {headers:{'content-type': 'application/x-www-form-urlencoded'}})
                   .then(response => {
                     Swal.fire(
@@ -63,7 +63,7 @@ Vue.createApp({
 
 
       cerrarsesion(){
-        axios.post('/api/logout').then(response => window.location.href="http://localhost:8080/web/index.html")
+        axios.post('/api/logout').then(response => window.location.href="https://homebakingmindhub.herokuapp.com/web/index.html")
       }
          
     }

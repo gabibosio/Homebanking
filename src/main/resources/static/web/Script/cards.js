@@ -41,7 +41,7 @@ Vue.createApp({
           confirmButtonText: 'Si, Eliminar!'
         }).then((result) => {
           if (result.isConfirmed) {
-            axios.patch(`http://localhost:8080/api/cards/${id}`)
+            axios.patch(`https://homebakingmindhub.herokuapp.com/api/cards/${id}`)
             Swal.fire(
               'Eliminada!',
               'Tu tarjeta ha sido eliminada',
@@ -59,7 +59,7 @@ Vue.createApp({
             actual = date.toISOString().split('T')[0]
             this.tarjetas.forEach(card => {
               if(card.thruDate.valueOf() < actual.valueOf()){
-                axios.patch(`http://localhost:8080/api/cards/expired/${card.id}`)
+                axios.patch(`https://homebakingmindhub.herokuapp.com/api/cards/expired/${card.id}`)
                 .then(() => {
                   this.cargardatos()
                 })
@@ -68,7 +68,7 @@ Vue.createApp({
       },
 
       cargardatosiniciales(){
-        axios.get("http://localhost:8080/api/clients/current")
+        axios.get("https://homebakingmindhub.herokuapp.com/api/clients/current")
         .then(datos => {
           this.cliente = datos.data
           
@@ -86,7 +86,7 @@ Vue.createApp({
       },
 
       cargardatos(){
-        axios.get("http://localhost:8080/api/clients/current")
+        axios.get("https://homebakingmindhub.herokuapp.com/api/clients/current")
         .then(datos => {
           this.cliente = datos.data
           
@@ -102,7 +102,7 @@ Vue.createApp({
       },
 
       cerrarsesion(){
-        axios.post('/api/logout').then(response => window.location.href="http://localhost:8080/web/index.html")
+        axios.post('/api/logout').then(response => window.location.href="https://homebakingmindhub.herokuapp.com/web/index.html")
       }
       
     }

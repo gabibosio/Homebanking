@@ -20,7 +20,7 @@ Vue.createApp({
 
     methods:{     
         iniciosesion(mail,pass){
-            axios.post('/api/login',`email=${mail}&password=${pass}`,
+            axios.post('https://homebakingmindhub.herokuapp.com/api/login',`email=${mail}&password=${pass}`,
             {headers:
                 {'content-type':'application/x-www-form-urlencoded'}})
                 .then(response => mail == "admin@admin.com" ? window.location.href="https://homebakingmindhub.herokuapp.com/web/manager.html" : window.location.href="https://homebakingmindhub.herokuapp.com/web/accounts.html")
@@ -32,7 +32,7 @@ Vue.createApp({
         },
 
         registro(){
-          axios.post('/api/clients',`firstName=${this.nombre}&lastName=${this.apellido}&email=${this.emailregistro}&password=${this.contrasenaregistro}`,
+          axios.post('https://homebakingmindhub.herokuapp.com/api/clients',`firstName=${this.nombre}&lastName=${this.apellido}&email=${this.emailregistro}&password=${this.contrasenaregistro}`,
           {headers:{'content-type':'application/x-www-form-urlencoded'}})
           .then(response => this.iniciosesion(this.emailregistro,this.contrasenaregistro))
           .catch(error =>  {

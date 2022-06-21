@@ -21,7 +21,7 @@ Vue.createApp({
     },
 
     created(){
-      axios.get("http://localhost:8080/api/clients")
+      axios.get("https://homebakingmindhub.herokuapp.com/api/clients")
       .then(response =>  {
         this.clientes = response.data
         this.jsonClientes = response.data
@@ -45,7 +45,7 @@ Vue.createApp({
         .then(result => {
           if(result.isConfirmed){
             if(this.nombre !== "" && this.apellido !=="" && this.email !=="" && this.email.includes("@") &&  this.email.includes(".com")){
-              axios.post("http://localhost:8080/api/clients/create",`firstName=${this.nombre}&lastName=${this.apellido}&email=${this.email}&password=${this.password}`)
+              axios.post("https://homebakingmindhub.herokuapp.com/clients/create",`firstName=${this.nombre}&lastName=${this.apellido}&email=${this.email}&password=${this.password}`)
               .then(function (response) {
                 Swal.fire(
                   'Creado!',
@@ -91,7 +91,7 @@ Vue.createApp({
 
         editarcliente(id){
           if(this.nombremodal !== "" && this.apellidomodal !=="" && this.emailmodal !=="" && this.emailmodal.includes("@") &&  this.emailmodal.includes(".com")){
-          axios.patch(`http://localhost:8080/api/clients/modificar/${id}`,`firstName=${this.nombremodal}&lastName=${this.apellidomodal}&email=${this.emailmodal}`)
+          axios.patch(`https://homebakingmindhub.herokuapp.com/api/clients/modificar/${id}`,`firstName=${this.nombremodal}&lastName=${this.apellidomodal}&email=${this.emailmodal}`)
           .then(function (response) {
             location.reload(response)
           })
@@ -112,7 +112,7 @@ Vue.createApp({
         }).then((result) => {
           if (result.isConfirmed) {
             let cantidadCuotas = this.cuotas.split(",")
-            axios.post("http://localhost:8080/api/createLoans",{name:this.nombrePrestamo, maxAmount:this.montoMaximo, interest:this.interes, payments:cantidadCuotas})
+            axios.post("https://homebakingmindhub.herokuapp.com/api/createLoans",{name:this.nombrePrestamo, maxAmount:this.montoMaximo, interest:this.interes, payments:cantidadCuotas})
             .then(() => {
               Swal.fire(
                 'Creado!',
@@ -131,7 +131,7 @@ Vue.createApp({
       },
 
       cerrarsesion(){
-        axios.post('/api/logout').then(response => window.location.href="http://localhost:8080/web/index.html")
+        axios.post('/api/logout').then(response => window.location.href="https://homebakingmindhub.herokuapp.com/web/index.html")
       }
   
       },

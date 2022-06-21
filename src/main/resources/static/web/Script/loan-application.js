@@ -24,7 +24,7 @@ Vue.createApp({
     },
 
     created(){
-      axios.get("http://localhost:8080/api/clients/current").then(response =>{
+      axios.get("https://homebakingmindhub.herokuapp.com/api/clients/current").then(response =>{
         this.cliente = response.data
         this.cuentas = response.data.accounts
       })
@@ -52,7 +52,7 @@ Vue.createApp({
         })
         .then(result => {
           if (result.isConfirmed) {              
-            axios.post('/api/loans',{id:this.prestamos, amount:this.monto, payments:this.cuotas, accountDestiny:this.cuentadeDestino})
+            axios.post('https://homebakingmindhub.herokuapp.com/api/loans',{id:this.prestamos, amount:this.monto, payments:this.cuotas, accountDestiny:this.cuentadeDestino})
             .then(response => {
               Swal.fire(
                 'Prestamo Solicitado',
@@ -92,7 +92,7 @@ Vue.createApp({
       },
 
       cerrarsesion(){
-        axios.post('/api/logout').then(response => window.location.href="http://localhost:8080/web/index.html")
+        axios.post('/api/logout').then(response => window.location.href="https://homebakingmindhub.herokuapp.com/web/index.html")
       }
          
     }
