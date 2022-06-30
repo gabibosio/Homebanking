@@ -14,18 +14,16 @@ public class CardPaymentsDTO {
 
     private String name;
 
-    private LocalDate thruDate;
 
     public CardPaymentsDTO() {
     }
 
-    public CardPaymentsDTO(String name,String cardNumber, int cvv, long amount, String description,LocalDate thruDate) {
+    public CardPaymentsDTO(String name,String cardNumber, int cvv, long amount, String description) {
         this.cardNumber = cardNumber;
         this.cvv = cvv;
         this.amountPayment = amount;
         this.description = description;
         this.name = name;
-        this.thruDate = thruDate;
     }
 
     public String  getCardNumber() {
@@ -63,10 +61,4 @@ public class CardPaymentsDTO {
         this.name = name;
     }
 
-    public LocalDate getThruDate() {
-        return thruDate;
-    }
-    public void setThruDate(LocalDate thruDate) {
-        this.thruDate = thruDate;
-    }
 }

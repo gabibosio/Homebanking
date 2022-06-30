@@ -10,6 +10,7 @@ import com.MindHub.homebanking.services.TransactionService;
 import com.MindHub.homebanking.utils.CardUtils;
 import com.MindHub.homebanking.utils.Util;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -75,13 +76,14 @@ public class CardController {
     @CrossOrigin
     @Transactional
     @PostMapping(path = "/clients/cards/payments")
-    public ResponseEntity<Object> cardPayments(@RequestBody CardPaymentsDTO cardPaymentsDTO){
+    public ResponseEntity<Object> cardPayments(@RequestBody CardPaymentsDTO cardPaymentsDTO,@RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate thruDate){
+
 
         if(cardPaymentsDTO.getCardNumber().isEmpty()){
             return new ResponseEntity<>("el numero de la tarjeta no puede estar vacio",HttpStatus.FORBIDDEN);
         }
 
-        if(cardPaymentsDTO.getThruDate() == null){
+        if(thruDate == null){
             return new ResponseEntity<>("la fecha de la tarjeta no puede estar vacio",HttpStatus.FORBIDDEN);
         }
 
@@ -104,7 +106,7 @@ public class CardController {
         Client client = card.getOwner();
         Account account = client.getAccounts().stream().filter(account1 -> account1.getBalance()>cardPaymentsDTO.getAmountPayment()).findFirst().orElse(null);
 
-        if(card.getThruDate() != cardPaymentsDTO.getThruDate()){
+        if(card.getThruDate() != thruDate){
             return new ResponseEntity<>("las fechas no coinciden",HttpStatus.FORBIDDEN);
         }
 
