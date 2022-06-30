@@ -76,7 +76,7 @@ public class CardController {
     @CrossOrigin
     @Transactional
     @PostMapping(path = "/clients/cards/payments")
-    public ResponseEntity<Object> cardPayments(@RequestBody CardPaymentsDTO cardPaymentsDTO,@RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate thruDate){
+    public ResponseEntity<Object> cardPayments(@RequestBody CardPaymentsDTO cardPaymentsDTO,@RequestParam  String thruDate){
 
 
         if(cardPaymentsDTO.getCardNumber().isEmpty()){
@@ -103,12 +103,20 @@ public class CardController {
         if(card == null){
             return new ResponseEntity<>("no se encontro la tarjeta",HttpStatus.FORBIDDEN);
         }
+
+        String year = "" + card.getThruDate().getYear();
+        String mounth = "" + card.getThruDate().getMonth().getValue();
+        if(card.getThruDate().getMonth().getValue() < 10){
+            mounth = "0" + mounth;
+        }
+        String date = mounth + "/" + year.substring(2);
         Client client = card.getOwner();
         Account account = client.getAccounts().stream().filter(account1 -> account1.getBalance()>cardPaymentsDTO.getAmountPayment()).findFirst().orElse(null);
 
-        if(card.getThruDate() != thruDate){
+        if(!date.equals(thruDate)){
             return new ResponseEntity<>("las fechas no coinciden",HttpStatus.FORBIDDEN);
         }
+        
 
         if(account == null){
             return new ResponseEntity<>("Saldo Insuficiente",HttpStatus.FORBIDDEN);
