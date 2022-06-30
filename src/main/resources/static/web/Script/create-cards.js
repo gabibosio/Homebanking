@@ -20,7 +20,7 @@ Vue.createApp({
             axios.post('https://homebakingmindhub.herokuapp.com/api/clients/current/cards',`type=${this.tipo}&color=${this.color}`,{headers:{'content-type': 'application/x-www-form-urlencoded'}})
             .then(response => window.location.href="https://homebakingmindhub.herokuapp.com/web/cards.html")
             .catch(error => {
-              Swal.fire('Error!' , error.response.data, 'error')
+               Swal.fire('invalid transaction!' , error.response.data, 'error')
               
             })
         }

@@ -81,6 +81,10 @@ public class CardController {
             return new ResponseEntity<>("el numero de la tarjeta no puede estar vacio",HttpStatus.FORBIDDEN);
         }
 
+        if(cardPaymentsDTO.getThruDate() == null){
+            return new ResponseEntity<>("la fecha de la tarjeta no puede estar vacio",HttpStatus.FORBIDDEN);
+        }
+
         if(cardPaymentsDTO.getCvv() <=0){
             return new ResponseEntity<>("el cvv no puede estar vacio",HttpStatus.FORBIDDEN);
         }
@@ -100,6 +104,9 @@ public class CardController {
         Client client = card.getOwner();
         Account account = client.getAccounts().stream().filter(account1 -> account1.getBalance()>cardPaymentsDTO.getAmountPayment()).findFirst().orElse(null);
 
+        if(card.getThruDate() != cardPaymentsDTO.getThruDate()){
+            return new ResponseEntity<>("las fechas no coinciden",HttpStatus.FORBIDDEN);
+        }
 
         if(account == null){
             return new ResponseEntity<>("Saldo Insuficiente",HttpStatus.FORBIDDEN);
