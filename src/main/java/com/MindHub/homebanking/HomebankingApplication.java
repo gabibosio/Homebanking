@@ -90,7 +90,7 @@ public class HomebankingApplication {
 			cardRepository.save(card3);
 
 			Card card4 = new Card(false,true,client3.getFirstName()+ " "+ client3.getLastName(),CardType.CREDITO,SILVER,"8864-2940-3229-6139",388,
-					LocalDate.now(),LocalDate.now().plusYears(5),client1);
+					LocalDate.now(),LocalDate.now().plusYears(5),client3);
 			cardRepository.save(card4);
 
 		};
