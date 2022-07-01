@@ -38,12 +38,18 @@ public class HomebankingApplication {
 			repositoryclient.save(client1);
 			Client client2 = new Client("admin","admin","admin@admin.com",passwordEnconder.encode("asd123"));
 			repositoryclient.save(client2);
+			Client client3 = new Client("Juan","Perez","juanperez@gmail.com",passwordEnconder.encode("1234"));
+			repositoryclient.save(client3);
+
 
 
 			Account account1 = new Account(AccountType.Corriente,true,client1,"VIN001", LocalDate.now(),5000);
             repositoryaccount.save(account1);
 			Account account2 = new Account(AccountType.Ahorro,true,client1,"VIN002", LocalDate.now().plusDays(1),7500);
 			repositoryaccount.save(account2);
+
+			Account account3 = new Account(AccountType.Ahorro,true,client3,"VIN003", LocalDate.now().plusDays(1),1000000);
+			repositoryaccount.save(account3);
 
 
 
@@ -82,6 +88,10 @@ public class HomebankingApplication {
 			Card card3 = new Card(false,true,client1.getFirstName()+ " "+ client1.getLastName(),CardType.CREDITO,SILVER,"1518-5629-4454-5483",498,
 					LocalDate.now(),LocalDate.now().plusYears(-5),client1);
 			cardRepository.save(card3);
+
+			Card card4 = new Card(false,true,client3.getFirstName()+ " "+ client3.getLastName(),CardType.CREDITO,SILVER,"8864-2940-3229-6139",388,
+					LocalDate.now(),LocalDate.now().plusYears(5),client1);
+			cardRepository.save(card4);
 
 		};
 	}
