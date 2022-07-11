@@ -69,7 +69,15 @@ Vue.createApp({
         }).then((result) => {
           if (result.isConfirmed) {
             Swal.fire('Guardado!', '', 'success')
-            axios.post(`https://homebakingmindhub.herokuapp.com/api/pdf/${id}`,`desde=${this.desde}&hasta=${this.hasta}`)
+           axios.post(`/api/pdf/generate/${id}`,`desde=${this.desde}&hasta=${this.hasta}`,{'responseType': 'blob'})
+            .then(response =>{
+              let url = window.URL.createObjectURL(new Blob([response.data]))
+              let link = document.createElement("a")
+              link.href = url;
+              link.setAttribute("download", `${this.cuenta}_${this.desde}-${this.hasta}.pdf`)
+              document.body.appendChild(link)
+              link.click()
+            })
           } else if (result.isDenied) {
             Swal.fire('no se guardo', '', 'info')
           }
