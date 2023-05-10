@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./Styles/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <title>Document</title>
+    <link rel="shortcut icon" href="./imagenes/favicon.ico" type="image/x-icon">
+</head>
+<body>
+    
+    <div id="app">
+    
+    <div  class="d-flex flex-column justify-content-center" id="contenedorform">
+
+            
+            <div class=" d-flex justify-content-center mb-3">
+                <div id="card" class="card" >
+                <div id="frente" class="card__front" :class="{'card__partgold' : color == 'GOLD','card__partsilver' : color == 'SILVER','card__parttitanium' : color == 'TITANIUM',card__partblue : color == ''}">
+                    <img class="card__front-square card__square" src="./imagenes/chip.png">
+                    <img id="visadebito" v-if="tipo == 'DEBITO'" class="card__front-logo card__logo" src="./imagenes/debito.jpg">
+                    <img v-else-if="tipo == 'CREDITO'" class="card__front-logo card__logo" src="./imagenes/visa.png">
+                    <p class="card_numer">0000-0000-0000-0000</p>
+                    <div class="card__space-75">
+                    <span class="card__label">Card holder</span>
+                    <p class="card__info">{{cliente}}</p>
+                </div>
+                <div class="card__space-25">
+                    <span class="card__label">Expires</span>
+                    <p class="card__info">00/00</p>
+                </div>
+            </div>
+            
+            <div id="atras" class="card__back":class="{'card__partgold' : color == 'GOLD','card__partsilver' : color == 'SILVER','card__parttitanium' : color == 'TITANIUM',card__partblue : color == ''}">
+                <div class="card__black-line"></div>
+                <div class="card__back-content">
+                    <div class="card__secret">
+                        <p class="card__secret--last">000</p>
+                    </div>
+                    <img class="card__back-square card__square" src="./imagenes/chip.png">
+                    <img id="visadebito" v-if="tipo == 'DEBITO'" class="card__back-logo card__logo" src="./imagenes/debito.jpg">
+                    <img v-else-if="tipo == 'CREDITO'" class="card__back-logo card__logo" src="./imagenes/visa.png">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+    
+    
+    <div id="login">
+        <div class="container">
+            <div id="login-row" class="row justify-content-center align-items-center">
+                <div id="login-column" class="col-md-6">
+                    <div id="login-box" class="col-md-12">
+                        <form v-on:submit.prevent="creartarjeta()" id="login-form" class="form" action="" method="post">
+                            <div class="d-flex flex-column">
+                                <select required class="mt-5" v-model="tipo" name="" id="">
+                                    <option value="" hidden disabled>Seleccione el tipo de Tarjeta</option>
+                                    <option  value="DEBITO">Débito</option>
+                                    <option  value="CREDITO">Crédito</option>
+                                </select>
+                                <select required class="mt-5 mb-5" v-model="color" name="" id="">
+                                    <option value="" hidden disabled>Seleccione el Color</option>
+                                    <option  value="GOLD">Gold</option>
+                                    <option  value="SILVER">Silver</option>
+                                    <option  value="TITANIUM">Titanium</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <input  type="submit" name="submit" class="btn btn-primary btn-md" value="Crear Tarjeta">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+</div>
+
+
+</div>
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://unpkg.com/vue@3"></script>
+    <script src="./Script/create-cards.js"></script>
+</body>
+</html>

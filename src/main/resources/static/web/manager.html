@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="./Styles/styles.css">
+    <title>Document</title>
+</head>
+<body>
+
+  <div id="app">
+    
+  <h1 class="d-flex justify-content-center">HomeBanking</h1>
+  
+
+    
+      <div id="contenedor" class="d-flex">
+
+        <div  class="d-flex flex-column col-lg-8 col-md-6 col-xs-4">
+
+          
+          <div>
+            <form v-on:submit.prevent="dibujarclientes()" id="form1">
+              <h2>Crear Cliente</h2>
+              <div class="mb-3">
+                <label for="formGroupExampleInput" class="form-label">Nombre:</label>
+                <input required  v-model="nombre" type="text" class="form-control" id="formGroupExampleInput" placeholder="Nombre">
+              </div>
+              <div class="mb-3">
+                <label for="formGroupExampleInput2" class="form-label">Apellido:</label>
+                <input required  v-model="apellido" type="text" class="form-control" id="formGroupExampleInput2" placeholder="Apellido">
+              </div>
+              <div class="mb-3">
+                <label for="formGroupExampleInput2" class="form-label">Email:</label>
+                <input required  v-model="email" type="email" class="form-control" id="formGroupExampleInput2" placeholder="Email">
+              </div>
+              <div class="mb-3">
+                <label for="formGroupExampleInput2" class="form-label">Contraseña:</label>
+                <input required  v-model="password" type="password" class="form-control" id="formGroupExampleInput2" placeholder="Contraseña">
+              </div>
+              <button  v-on:click="" type="submit" class="btn btn-success">Añadir Cliente</button>
+            </form>
+        </div>
+        
+        
+        
+        
+        
+        
+        
+        <div class="col-lg-12 col-md-6 col-xs-2">
+          <h2 class="mt-5">Lista de Clientes</h2>
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Nombre</th>
+                <th scope="col">Apellido</th>
+                <th scope="col">Email</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="(cliente,index) in clientes">
+                <td>{{cliente.firstName}}</td>
+                <td>{{cliente.lastName}}</td>
+                <td>{{cliente.email}}</td>
+                <td><button data-bs-toggle="modal" :data-bs-target="'#' + cliente.lastName + index" type="submit" class="btn btn-primary"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-pencil" width="28" height="28" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                  <path d="M4 20h4l10.5 -10.5a1.5 1.5 0 0 0 -4 -4l-10.5 10.5v4" />
+                  <line x1="13.5" y1="6.5" x2="17.5" y2="10.5" />
+                </svg></button></td>
+                <td><button  v-on:click="borrarcliente(cliente)" type="submit" class="btn btn-danger"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash" width="28" height="28" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                  <line x1="4" y1="7" x2="20" y2="7" />
+                  <line x1="10" y1="11" x2="10" y2="17" />
+                  <line x1="14" y1="11" x2="14" y2="17" />
+                  <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
+                  <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
+                </svg></button></td>
+                <td>
+                  <div class="modal" tabindex="-1" :id="cliente.lastName + index">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title">Edit Client</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        <form >
+                          <div class="mb-3">
+                            <label for="formGroupExampleInput" class="form-label">Nombre:</label>
+                            <input required v-model="nombremodal" type="text" class="form-control" id="formGroupExampleInput" placeholder="Nombre">
+                          </div>
+                          <div class="mb-3">
+                            <label for="formGroupExampleInput2" class="form-label">Apellido:</label>
+                            <input required v-model="apellidomodal" type="text" class="form-control" id="formGroupExampleInput2" placeholder="Apellido">
+                          </div>
+                          <div class="mb-3">
+                            <label for="formGroupExampleInput2" class="form-label">Email:</label>
+                            <input required v-model="emailmodal" type="email" class="form-control" id="formGroupExampleInput2" placeholder="Email">
+                          </div>
+                        </form>
+                      </div>
+                      <div  class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button  v-on:click="editarcliente(cliente.id)" type="button" class="btn btn-primary">Guardar Cambios</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        
+        <form v-on:submit.prevent="crearPrestamo()" action="">
+          <div class="container p-0 mt-5">
+              <div class="cardtransfer px-4">
+                  <p class="h8 py-3">Crear Prestamo</p>
+                  <div class="row gx-3">
+                      <div class="col-12">
+                        <div  class="d-flex flex-column">
+                          <p class="text mb-1">Nombre</p>
+                          <input required v-model="nombrePrestamo" class="form-control mb-3 pt-2 " type="text" >
+                  </div>
+                      </div>
+                      <div class="col-12">
+                        <div  class="d-flex flex-column">
+                          <p class="text mb-1">Monto Maximo</p>
+                          <input required v-model="montoMaximo" class="form-control mb-3 pt-2 " type="number" >
+                  </div>
+                      </div>
+                      <div  class="d-flex flex-column">
+                        <p class="text mb-1">Cuotas</p>
+                        <input required v-model="cuotas"  class="form-control mb-3 pt-2 " type="text" >
+                </div>
+                          <div  class="d-flex flex-column">
+                              <p class="text mb-1">Interes</p>
+                              <input required v-model="interes" class="form-control mb-3 pt-2 " type="number" >
+                      </div>
+                      <div class="col-12">
+                          <div class="mb-3">
+                              <button class="btn btn-primary"  type="submit">Crear</button>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </form>
+
+      <hr>
+      <div class="d-flex justify-content-center">
+
+        <button v-on:click="cerrarsesion()" id="boton" class="btn btn-danger mt-5"  type="button">Cerrar Sesion</button>
+      </div>
+        
+      </div>
+        
+        
+        <div  class="mt-5 ms-5">
+          <h2>Datos</h2>
+          <pre>{{jsonClientes}}</pre>
+        </div>
+
+        
+        
+        
+      </div>
+
+    </div>
+
+
+ 
+
+        
+      <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+      <script src="https://unpkg.com/vue@3"></script>
+      <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+     <script src="./Script/manager.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./Styles/login.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <title>Login</title>
+    <link rel="shortcut icon" href="./imagenes/favicon.ico" type="image/x-icon">
+</head>
+<body>
+    
+
+    <div id="app">
+
+    <header class=" d-flex">
+        <div  class="w-100 d-flex justify-content-center align-items-center">
+          <img  id="logo" src="./imagenes/logo1.png" alt="logo">
+          <h1>Bienvenido a Mindhub Brother's</h1>
+        </div>
+    </header>
+
+
+
+      <div class="col-md-6  p-0 mt-5" id="contenedor">
+  <div class="login-box">
+      <div class="login-snip">
+          <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Ingresar</label>
+          <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">Registrarme</label>
+          <div class="login-space">
+              <form v-on:submit.prevent="iniciosesion(email,password)" class="login">
+                  <div class="group">
+                      <label for="user" class="label">Email</label>
+                      <input required id="user" v-model="email" type="text" class="input"  placeholder="Ingrese su Email">
+                  </div>
+                  <div class="group">
+                      <label for="pass" class="label">Contraseña</label>
+                      <div class="d-flex">
+                        <input required id="password" v-model="password" type="password" class="input" data-type="password" placeholder="Ingrese su Contraseña">
+                        <a  type="button" v-on:click="mostrarContrasena()"><i class="fs-3 bi bi-eye-slash"></i></a>
+                      </div>
+                    </div>
+                    <div v-if="error1">
+                        <p class="text-danger">Email o Contraseña incorrecta</p>
+                    </div>
+                  <div class="group mt-5">
+                      <input  type="submit" class="button" value="Ingresar">
+                  </div>
+                  <div class="hr"></div>
+                   <div class="foot">
+                      <label for="tab-2">No tienes una Cuenta? Registrate aqui</label>
+                  </div>
+              </form>
+              <form v-on:submit.prevent="registro()" class="sign-up-form">
+                  <div class="group">
+                      <label for="user" class="label">Nombre</label>
+                      <input required id="user" v-model="nombre" type="text"  class="input" placeholder="Ingrese su Nombre">
+                  </div>
+                  <div class="group">
+                      <label for="pass" class="label">Apellido</label>
+                      <input required id="pass" v-model="apellido" type="text" class="input" data-type="text" placeholder="Ingrese su Apellido">
+                  </div>
+                  <div class="group">
+                      <label for="pass" class="label">Email</label>
+                      <input required id="pass" v-model="emailregistro" type="email" class="input" data-type="email" placeholder="Ingrese su Email" >
+                  </div>
+                  <div class="group">
+                      <label for="pass" class="label">Contraseña</label>
+                      <input required id="pass" v-model="contrasenaregistro" type="password" class="input" data-type="password" placeholder="Ingrese su Contraseña">
+                  </div>
+                  <div v-if="error2">
+                    <p  class="text-danger">Email en uso ingrese otro</p>
+                </div>
+                  <div class="group mt-5">
+                      <input  type="submit" class="button" value="Registrarme">
+                  </div>
+              </form>
+          </div>
+      </div>
+  </div>   
+  </div>
+
+
+</div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/vue@3"></script>
+    <script src="./Script/index.js"></script>
+</body>
+</html>
