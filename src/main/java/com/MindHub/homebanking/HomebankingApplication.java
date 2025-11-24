@@ -34,68 +34,64 @@ public class HomebankingApplication {
 	@Bean
 	public CommandLineRunner initData(ClientRepository repositoryclient, AccountRepository repositoryaccount, TransactionRepositoy repositoyTransaction, LoanRepository loanRepository, ClientLoanRepository clientLoanRepository,CardRepository cardRepository) {
 		return (args) -> {
-			Client client1 = new Client("Melba","Morel","melba@mindhub.com", passwordEnconder.encode("melba"));
-			repositoryclient.save(client1);
-			Client client2 = new Client("admin","admin","admin@admin.com",passwordEnconder.encode("asd123"));
-			repositoryclient.save(client2);
-			Client client3 = new Client("Juan","Perez","juanperez@gmail.com",passwordEnconder.encode("1234"));
-			repositoryclient.save(client3);
+			if(repositoryclient.count()==0) {
+				Client client1 = new Client("Melba", "Morel", "melba@mindhub.com", passwordEnconder.encode("melba"));
+				repositoryclient.save(client1);
+				Client client2 = new Client("admin", "admin", "admin@admin.com", passwordEnconder.encode("asd123"));
+				repositoryclient.save(client2);
+				Client client3 = new Client("Juan", "Perez", "juanperez@gmail.com", passwordEnconder.encode("1234"));
+				repositoryclient.save(client3);
 
 
+				Account account1 = new Account(AccountType.Corriente, true, client1, "VIN001", LocalDate.now(), 5000);
+				repositoryaccount.save(account1);
+				Account account2 = new Account(AccountType.Ahorro, true, client1, "VIN002", LocalDate.now().plusDays(1), 7500);
+				repositoryaccount.save(account2);
 
-			Account account1 = new Account(AccountType.Corriente,true,client1,"VIN001", LocalDate.now(),5000);
-            repositoryaccount.save(account1);
-			Account account2 = new Account(AccountType.Ahorro,true,client1,"VIN002", LocalDate.now().plusDays(1),7500);
-			repositoryaccount.save(account2);
-
-			Account account3 = new Account(AccountType.Ahorro,true,client3,"VIN003", LocalDate.now().plusDays(1),1000000);
-			repositoryaccount.save(account3);
-
+				Account account3 = new Account(AccountType.Ahorro, true, client3, "VIN003", LocalDate.now().plusDays(1), 1000000);
+				repositoryaccount.save(account3);
 
 
-			Transaction transaction1 = new Transaction(account1.getBalance(),true,"Alquiler",5000,CREDITO,LocalDate.now(), account1);
-			repositoyTransaction.save(transaction1);
+				Transaction transaction1 = new Transaction(account1.getBalance(), true, "Alquiler", 5000, CREDITO, LocalDate.now(), account1);
+				repositoyTransaction.save(transaction1);
 
-			Transaction transaction2 = new Transaction(account1.getBalance(),true,"ingresos",-3000,DEBITO,LocalDate.now().plusDays(5), account1);
-			repositoyTransaction.save(transaction2);
+				Transaction transaction2 = new Transaction(account1.getBalance(), true, "ingresos", -3000, DEBITO, LocalDate.now().plusDays(5), account1);
+				repositoyTransaction.save(transaction2);
 
-			Transaction transaction3 = new Transaction(account2.getBalance(),true,"ingresos",8000,CREDITO,LocalDate.now(), account2);
-			repositoyTransaction.save(transaction3);
-			Transaction transaction4 = new Transaction(account2.getBalance(),true,"Netflix",-2000,DEBITO,LocalDate.now(), account2);
-			repositoyTransaction.save(transaction4);
+				Transaction transaction3 = new Transaction(account2.getBalance(), true, "ingresos", 8000, CREDITO, LocalDate.now(), account2);
+				repositoyTransaction.save(transaction3);
+				Transaction transaction4 = new Transaction(account2.getBalance(), true, "Netflix", -2000, DEBITO, LocalDate.now(), account2);
+				repositoyTransaction.save(transaction4);
 
 
-            Loan Hipotecario = new Loan(20,"Hipotecario",500000, List.of(12,24,36,48,60));
-			loanRepository.save(Hipotecario);
+				Loan Hipotecario = new Loan(20, "Hipotecario", 500000, List.of(12, 24, 36, 48, 60));
+				loanRepository.save(Hipotecario);
 
-			Loan Personal = new Loan(10,"Personal",100000,List.of(6,12,24));
-			loanRepository.save(Personal);
+				Loan Personal = new Loan(10, "Personal", 100000, List.of(6, 12, 24));
+				loanRepository.save(Personal);
 
-			Loan Automotriz = new Loan(15,"Automotriz",300000,List.of(6,12,24,36));
-			loanRepository.save(Automotriz);
+				Loan Automotriz = new Loan(15, "Automotriz", 300000, List.of(6, 12, 24, 36));
+				loanRepository.save(Automotriz);
 
-			ClientLoan clientLoan1 = new ClientLoan(400000.0,60,client1,Hipotecario);
-			clientLoanRepository.save(clientLoan1);
-			ClientLoan clientLoan2 = new ClientLoan(50000.0,12,client1,Personal);
-			clientLoanRepository.save(clientLoan2);
+				ClientLoan clientLoan1 = new ClientLoan(400000.0, 60, client1, Hipotecario);
+				clientLoanRepository.save(clientLoan1);
+				ClientLoan clientLoan2 = new ClientLoan(50000.0, 12, client1, Personal);
+				clientLoanRepository.save(clientLoan2);
 
-            Card card1 = new Card(false,true,client1.getFirstName()+ " "+ client1.getLastName(),CardType.DEBITO,GOLD,"6556-4265-1565-8545",654,
-					LocalDate.now(),LocalDate.now().plusYears(5),client1);
-			cardRepository.save(card1);
-			Card card2 = new Card(false,true,client1.getFirstName()+ " "+ client1.getLastName(),CardType.CREDITO,TITANIUM,"2624-1151-1995-5548",356,
-					LocalDate.now(),LocalDate.now().plusYears(5),client1);
-			cardRepository.save(card2);
-			Card card3 = new Card(false,true,client1.getFirstName()+ " "+ client1.getLastName(),CardType.CREDITO,SILVER,"1518-5629-4454-5483",498,
-					LocalDate.now(),LocalDate.now().plusYears(-5),client1);
-			cardRepository.save(card3);
+				Card card1 = new Card(false, true, client1.getFirstName() + " " + client1.getLastName(), CardType.DEBITO, GOLD, "6556-4265-1565-8545", 654,
+						LocalDate.now(), LocalDate.now().plusYears(5), client1);
+				cardRepository.save(card1);
+				Card card2 = new Card(false, true, client1.getFirstName() + " " + client1.getLastName(), CardType.CREDITO, TITANIUM, "2624-1151-1995-5548", 356,
+						LocalDate.now(), LocalDate.now().plusYears(5), client1);
+				cardRepository.save(card2);
+				Card card3 = new Card(false, true, client1.getFirstName() + " " + client1.getLastName(), CardType.CREDITO, SILVER, "1518-5629-4454-5483", 498,
+						LocalDate.now(), LocalDate.now().plusYears(-5), client1);
+				cardRepository.save(card3);
 
-			Card card4 = new Card(false,true,client3.getFirstName()+ " "+ client3.getLastName(),CardType.CREDITO,SILVER,"8864-2940-3229-6139",388,
-					LocalDate.now(),LocalDate.now().plusYears(5),client3);
-			cardRepository.save(card4);
-
+				Card card4 = new Card(false, true, client3.getFirstName() + " " + client3.getLastName(), CardType.CREDITO, SILVER, "8864-2940-3229-6139", 388,
+						LocalDate.now(), LocalDate.now().plusYears(5), client3);
+				cardRepository.save(card4);
+			}
 		};
 	}
-
-
-
 }
